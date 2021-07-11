@@ -1,12 +1,10 @@
-# Go Gin Example [![rcard](https://goreportcard.com/badge/github.com/EDDYCJY/go-gin-example)](https://goreportcard.com/report/github.com/EDDYCJY/go-gin-example) [![GoDoc](http://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](https://godoc.org/github.com/EDDYCJY/go-gin-example) [![License](http://img.shields.io/badge/license-mit-blue.svg?style=flat-square)](https://raw.githubusercontent.com/EDDYCJY/go-gin-example/master/LICENSE)
-
-An example of gin contains many useful features
-
+# Go Gin Example
+参考：
 [简体中文](https://github.com/EDDYCJY/go-gin-example/blob/master/README_ZH.md)
 
 ## Installation
 ```
-$ go get github.com/EDDYCJY/go-gin-example
+$ go get https://github.com/zj611/go-gin-demo.git
 ```
 
 ## How to run
