@@ -419,12 +419,12 @@ var doc = `{
                 "produces": [
                     "application/json"
                 ],
-                "summary": "Import article tag",
+                "summary": "Import Image",
                 "parameters": [
                     {
                         "type": "file",
-                        "description": "Excel File张俊",
-                        "name": "file",
+                        "description": "Image File",
+                        "name": "image",
                         "in": "formData",
                         "required": true
                     }
@@ -568,6 +568,39 @@ var doc = `{
                     }
                 }
             }
+        },
+        "/insert": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Insert",
+                "parameters": [
+                    {
+                        "description": "需要上传的JSON",
+                        "name": "param",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Customer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/app.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/app.Response"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -581,6 +614,26 @@ var doc = `{
                     "type": "object"
                 },
                 "msg": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Customer": {
+            "type": "object",
+            "properties": {
+                "created_on": {
+                    "type": "integer"
+                },
+                "deleted_on": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "modified_on": {
+                    "type": "integer"
+                },
+                "user": {
                     "type": "string"
                 }
             }

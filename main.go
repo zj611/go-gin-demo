@@ -2,17 +2,16 @@ package main
 
 import (
 	"fmt"
+	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
-
-	"github.com/gin-gonic/gin"
 
 	"gin-demo/models"
 	"gin-demo/pkg/gredis"
 	"gin-demo/pkg/logging"
 	"gin-demo/pkg/setting"
-	"gin-demo/routers"
 	"gin-demo/pkg/util"
+	"gin-demo/routers"
 )
 
 func init() {

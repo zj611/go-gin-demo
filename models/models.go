@@ -14,10 +14,11 @@ import (
 var db *gorm.DB
 
 type Model struct {
-	ID         int `gorm:"primary_key" json:"id"`
-	CreatedOn  int `json:"created_on"`
-	ModifiedOn int `json:"modified_on"`
-	DeletedOn  int `json:"deleted_on"`
+	ID         int    `gorm:"primary_key" json:"id"`
+	User       string `gorm:"column:user;type:varchar(200)" json:"user"`
+	CreatedOn  int    `json:"created_on"`
+	ModifiedOn int    `json:"modified_on"`
+	DeletedOn  int    `json:"deleted_on"`
 }
 
 // Setup initializes the database instance
@@ -33,11 +34,12 @@ func Setup() {
 		log.Fatalf("models.Setup err: %v", err)
 	}
 
-	gorm.DefaultTableNameHandler = func(db *gorm.DB, defaultTableName string) string {
-		return setting.DatabaseSetting.TablePrefix + defaultTableName
-	}
+	//gorm.DefaultTableNameHandler = func(db *gorm.DB, defaultTableName string) string {
+	//	return setting.DatabaseSetting.TablePrefix + defaultTableName
+	//}
 
 	db.SingularTable(true)
+	db.AutoMigrate(&Model{}, &Customer{})
 	db.Callback().Create().Replace("gorm:update_time_stamp", updateTimeStampForCreateCallback)
 	db.Callback().Update().Replace("gorm:update_time_stamp", updateTimeStampForUpdateCallback)
 	db.Callback().Delete().Replace("gorm:delete", deleteCallback)

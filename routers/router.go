@@ -1,20 +1,17 @@
 package routers
 
 import (
-	"net/http"
-
-	"github.com/gin-gonic/gin"
-
 	_ "gin-demo/docs"
-	"github.com/swaggo/gin-swagger"
-	"github.com/swaggo/gin-swagger/swaggerFiles"
-
 	"gin-demo/middleware/jwt"
 	"gin-demo/pkg/export"
 	"gin-demo/pkg/qrcode"
 	"gin-demo/pkg/upload"
 	"gin-demo/routers/api"
 	"gin-demo/routers/api/v1"
+	"github.com/gin-gonic/gin"
+	"github.com/swaggo/gin-swagger"
+	"github.com/swaggo/gin-swagger/swaggerFiles"
+	"net/http"
 )
 
 // InitRouter initialize routing information
@@ -27,6 +24,7 @@ func InitRouter() *gin.Engine {
 	r.StaticFS("/upload/images", http.Dir(upload.GetImageFullPath()))
 	r.StaticFS("/qrcode", http.Dir(qrcode.GetQrCodeFullPath()))
 
+	r.POST("/insert", api.Insert)
 	r.POST("/auth", api.GetAuth)
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	r.POST("/upload", api.UploadImage)

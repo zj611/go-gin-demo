@@ -8,6 +8,19 @@ definitions:
       msg:
         type: string
     type: object
+  models.Customer:
+    properties:
+      created_on:
+        type: integer
+      deleted_on:
+        type: integer
+      id:
+        type: integer
+      modified_on:
+        type: integer
+      user:
+        type: string
+    type: object
 info:
   contact: {}
   description: An example of gin
@@ -324,9 +337,9 @@ paths:
   /api/v1/tags/import:
     post:
       parameters:
-      - description: Excel File张俊
+      - description: Image File
         in: formData
-        name: file
+        name: image
         required: true
         type: file
       produces:
@@ -340,7 +353,7 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
-      summary: Import article tag
+      summary: Import Image
   /auth:
     get:
       parameters:
@@ -366,4 +379,25 @@ paths:
           schema:
             $ref: '#/definitions/app.Response'
       summary: Get Auth
+  /insert:
+    post:
+      parameters:
+      - description: 需要上传的JSON
+        in: body
+        name: param
+        required: true
+        schema:
+          $ref: '#/definitions/models.Customer'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: Insert
 swagger: "2.0"
